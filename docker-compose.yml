@@ -1,0 +1,10 @@
+version: '3'
+services:
+  nginx:
+    build:
+      context: ./docker/nginx
+    volumes:
+      - ./:/var/www/toury_site
+    ports:
+      - "80:80"
+      - "443:443"
