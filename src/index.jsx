@@ -9,27 +9,19 @@ import { Provider } from 'react-redux';
 import TourneyTeamsNumberContainer from './components/TourneyTeamsNumberContainer.jsx';
 import PlayersListContainer from './components/PlayersListContainer.jsx';
 import { withStyles } from '@material-ui/core/styles';
+import uniqid from 'uniqid';
 
 const initialState = {
     tourneyTeamsCount: 16,
     players: [
         {
-            id: 1,
-            name: 'Player 1',
+            id: uniqid(),
+            name: 'Player name',
             teamsCount: 32,
             requiredTeams: [
                 {name: 'Liverpool FC'}
             ]
         },
-        {
-            id: 2,
-            name: 'Player 2',
-            teamsCount: 32,
-            requiredTeams: [
-                {name: 'Real Madrid'},
-                {name: 'Chelsea FC'}
-            ]
-        }
     ]
 };
 

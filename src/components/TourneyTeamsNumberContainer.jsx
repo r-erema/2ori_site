@@ -1,5 +1,5 @@
 import React from 'react';
-import {CHANGE_TOURNEY_TEAMS_COUNT_ACTION, changeTourneyTeamsCount} from "../actions";
+import {CHANGE_TOURNEY_TEAMS_COUNT_ACTION, changeTourneyTeamsCountAction} from "../actions";
 import {tourneyTeamsCount} from "../reducers";
 import {connect} from "react-redux";
 import TourneyTeamsNumberView from "./TourneyTeamsNumberView.jsx";
@@ -12,8 +12,8 @@ const mapStateToProps= (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onChangeTourneyTeamsCount: (event) => {
-            dispatch(changeTourneyTeamsCount(event.target.value))
+        changeTourneyTeamsCount: (event) => {
+            dispatch(changeTourneyTeamsCountAction(event.target.value))
         }
     };
 };

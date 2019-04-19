@@ -12,6 +12,7 @@ export default class PlayersListView extends React.Component {
             <Card >
                 <CardContent>
                     <Typography variant="h5" component="h2" >{player.name}</Typography>
+                    <Typography color="textSecondary">Teams count: {player.teamsCount}</Typography>
 
                     <TeamsListContainer requiredTeams={player.requiredTeams} />
 
