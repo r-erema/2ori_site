@@ -10,6 +10,10 @@ import TourneyTeamsNumberContainer from './components/TourneyTeamsNumberContaine
 import PlayersListContainer from './components/PlayersListContainer.jsx';
 import { withStyles } from '@material-ui/core/styles';
 import uniqid from 'uniqid';
+import axios from 'axios';
+
+// noinspection JSUnresolvedVariable
+axios.defaults.baseURL = process.env.API_URL;
 
 const initialState = {
     tourneyTeamsCount: 16,
@@ -17,10 +21,8 @@ const initialState = {
         {
             id: uniqid(),
             name: 'Player name',
-            teamsCount: 32,
-            requiredTeams: [
-                {name: 'Liverpool FC'}
-            ]
+            teamsCount: 16,
+            requiredTeams: []
         },
     ]
 };
@@ -51,7 +53,6 @@ const styles = theme => ({
         padding: theme.spacing.unit * 2,
     }
 });
-
 App = withStyles(styles)(App);
 
 ReactDOM.render(
