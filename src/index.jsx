@@ -7,13 +7,15 @@ import * as reducers from './reducers';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import TourneyTeamsNumberContainer from './components/TourneyTeamsNumberContainer.jsx';
+import PlayersListContainer from './components/PlayersListContainer.jsx';
+import { withStyles } from '@material-ui/core/styles';
 
 const initialState = {
     tourneyTeamsCount: 16,
     players: [
         {
             id: 1,
-            name: 'Player1',
+            name: 'Player 1',
             teamsCount: 32,
             requiredTeams: [
                 {name: 'Liverpool FC'}
@@ -21,7 +23,7 @@ const initialState = {
         },
         {
             id: 2,
-            name: 'Player2',
+            name: 'Player 2',
             teamsCount: 32,
             requiredTeams: [
                 {name: 'Real Madrid'},
@@ -36,18 +38,29 @@ const mainReducer = combineReducers(reducers);
 const store = createStore(mainReducer, initialState);
 
 class App extends React.Component {
-
     render() {
+        const { classes } = this.props;
+
         return (
-            <Grid item xs={8} sm={8} >
-                <Paper>
-                    <TourneyTeamsNumberContainer />
-                </Paper>
+            <Grid container spacing={16} justify="center" >
+                <Grid item xs={8} sm={8}  >
+                    <Paper className={classes.root} >
+                        <TourneyTeamsNumberContainer />
+                        <PlayersListContainer />
+                    </Paper>
+                </Grid>
             </Grid>
         );
     };
-
 }
+
+const styles = theme => ({
+    root: {
+        padding: theme.spacing.unit * 2,
+    }
+});
+
+App = withStyles(styles)(App);
 
 ReactDOM.render(
     <Provider store={store}>
