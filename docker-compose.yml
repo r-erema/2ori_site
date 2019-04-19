@@ -8,3 +8,9 @@ services:
     ports:
       - "80:80"
       - "443:443"
+  nodejs:
+    image: node:11.14.0-alpine
+    volumes:
+      - ./:/var/www/toury_site
+    working_dir: /var/www/toury_site
+    tty: true
