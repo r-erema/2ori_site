@@ -2,7 +2,7 @@ FROM nginx:1.15.11-alpine
 
 RUN apk add --update openssl
 
-RUN echo ">> generating self signed certs into /etc/nginx/certs/*" && \
+RUN echo "Generating self signed certs into /etc/nginx/certs/*" && \
     openssl dhparam -out "/etc/ssl/dh.pem" 128 && \
     openssl req -x509 -newkey rsa:4086 \
      -subj "/C=BY/ST=Toury/L=Toury/O=Toury/CN=localhost" \

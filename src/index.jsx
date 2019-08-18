@@ -12,26 +12,58 @@ import { withStyles } from '@material-ui/core/styles';
 import uniqid from 'uniqid';
 import axios from 'axios';
 
-// noinspection JSUnresolvedVariable
 axios.defaults.baseURL = process.env.API_URL;
 
-const initialState = {
-    tourneyTeamsCount: 16,
-    players: [
+const generateInitialState = function () {
+    const tourneyTeamsCount = 8;
+    const players = [
         {
             id: uniqid(),
-            name: 'Player name',
-            teamsCount: 16,
-            requiredTeams: []
+            name: '',
+            teamsCount: 0,
+            requiredTeams: [],
+            editNameMode: false
         },
-    ]
+        {
+            id: uniqid(),
+            name: '',
+            teamsCount: 0,
+            requiredTeams: [],
+            editNameMode: false
+        },
+    ];
+
+    let teamsPerPlayer = Math.round(tourneyTeamsCount / players.length);
+    let remainingTeams = tourneyTeamsCount;
+    for (let i = 0; i < players.length; i++) {
+        teamsPerPlayer = teamsPerPlayer < remainingTeams ? teamsPerPlayer : remainingTeams;
+        players[i].name = 'Player ' + (i + 1);
+        players[i].teamsCount = teamsPerPlayer;
+        remainingTeams -= teamsPerPlayer
+    }
+    if (remainingTeams > 0) {
+        players[0].teamsCount += remainingTeams;
+    }
+
+    return {
+        tourneyTeamsCount: tourneyTeamsCount,
+        remainingTeamsCount: 0,
+        players: players
+    }
 };
 
 const mainReducer = combineReducers(reducers);
 
-const store = createStore(mainReducer, initialState);
+const store = createStore(mainReducer, generateInitialState());
 
 class App extends React.Component {
+
+    componentDidMount() {
+        axios.get('/init/').then(response => {
+            console.log(response.data);
+        });
+    }
+
     render() {
         const { classes } = this.props;
 
