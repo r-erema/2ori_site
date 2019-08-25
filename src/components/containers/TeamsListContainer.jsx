@@ -1,5 +1,5 @@
 import React from 'react';
-import TeamsListView from "./TeamsListView.jsx";
+import TeamsListView from "../views/TeamsListView.jsx";
 
 const TeamsListContainer = TeamsListView;
 

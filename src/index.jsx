@@ -6,51 +6,15 @@ import { combineReducers } from 'redux';
 import * as reducers from './reducers';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import TourneyTeamsNumberContainer from './components/TourneyTeamsNumberContainer.jsx';
-import PlayersListContainer from './components/PlayersListContainer.jsx';
+import TourneyTeamsNumberContainer from './components/containers/TourneyTeamsNumberContainer.jsx';
+import PlayersListContainer from './components/containers/PlayersListContainer.jsx';
 import { withStyles } from '@material-ui/core/styles';
-import uniqid from 'uniqid';
+import { generateInitialState } from './utils.js';
 import axios from 'axios';
 
 axios.defaults.baseURL = process.env.API_URL;
 
-const generateInitialState = function () {
-    const tourneyTeamsCount = 8;
-    const players = [
-        {
-            id: uniqid(),
-            name: '',
-            teamsCount: 0,
-            requiredTeams: [],
-            editNameMode: false
-        },
-        {
-            id: uniqid(),
-            name: '',
-            teamsCount: 0,
-            requiredTeams: [],
-            editNameMode: false
-        },
-    ];
 
-    let teamsPerPlayer = Math.round(tourneyTeamsCount / players.length);
-    let remainingTeams = tourneyTeamsCount;
-    for (let i = 0; i < players.length; i++) {
-        teamsPerPlayer = teamsPerPlayer < remainingTeams ? teamsPerPlayer : remainingTeams;
-        players[i].name = 'Player ' + (i + 1);
-        players[i].teamsCount = teamsPerPlayer;
-        remainingTeams -= teamsPerPlayer
-    }
-    if (remainingTeams > 0) {
-        players[0].teamsCount += remainingTeams;
-    }
-
-    return {
-        tourneyTeamsCount: tourneyTeamsCount,
-        remainingTeamsCount: 0,
-        players: players
-    }
-};
 
 const mainReducer = combineReducers(reducers);
 
