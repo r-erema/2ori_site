@@ -2,7 +2,8 @@ import {
     ADD_PLAYER_ACTION,
     CHANGE_TOURNEY_TEAMS_COUNT_ACTION,
     UPDATE_PLAYER_NAME,
-    UPDATE_PLAYER_TEAMS_COUNT
+    UPDATE_PLAYER_TEAMS_COUNT,
+    ADD_REQUIRED_TEAM
 } from "./actions";
 import uniqid from "uniqid";
 import { initialPlayersState, distributeTeamsCountEvenly } from "./utils.js";
@@ -26,6 +27,7 @@ export const players = (players = [], action = {}) => {
                 id: uniqid(),
                 name: 'Player ' + (players.length + 1),
                 teamsCount: 0,
+                requiredTeams: []
             }], action.tourneyTeamsCount);
         }
 
@@ -51,6 +53,16 @@ export const players = (players = [], action = {}) => {
 
         case CHANGE_TOURNEY_TEAMS_COUNT_ACTION: {
             return initialPlayersState(action.count);
+        }
+
+        case ADD_REQUIRED_TEAM: {
+            const clonedPlayers = [...players];
+            const i = clonedPlayers.findIndex((player) => {return player.id === action.playerId});
+            clonedPlayers[i].requiredTeams.push({
+                teamId: '',
+                teamName: ''
+            });
+            return clonedPlayers;
         }
 
         default: {

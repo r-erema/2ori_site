@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "@material-ui/styles": "^4.3.0",
-    "immutable": "^4.0.0-rc.12"
+    "immutable": "^4.0.0-rc.12",
+    "react-select": "^3.0.4"
   }
 }
