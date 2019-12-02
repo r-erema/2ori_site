@@ -14,8 +14,6 @@ import axios from 'axios';
 
 axios.defaults.baseURL = process.env.API_URL;
 
-
-
 const mainReducer = combineReducers(reducers);
 
 const store = createStore(mainReducer, generateInitialState());
@@ -23,7 +21,7 @@ const store = createStore(mainReducer, generateInitialState());
 class App extends React.Component {
 
     componentDidMount() {
-        axios.get('/init/').then(response => {
+        axios.get('/teams/').then(response => {
             console.log(response.data);
         });
     }
