@@ -20,12 +20,6 @@ const store = createStore(mainReducer, generateInitialState());
 
 class App extends React.Component {
 
-    componentDidMount() {
-        axios.get('/teams/').then(response => {
-            console.log(response.data);
-        });
-    }
-
     render() {
         const { classes } = this.props;
 
