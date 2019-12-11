@@ -2,7 +2,8 @@ export const CHANGE_TOURNEY_TEAMS_COUNT_ACTION = 'CHANGE_TEAMS_COUNT_ACTION',
              ADD_PLAYER_ACTION = 'ADD_PLAYER_ACTION',
              UPDATE_PLAYER_NAME = 'UPDATE_PLAYER_NAME',
              UPDATE_PLAYER_TEAMS_COUNT = 'UPDATE_PLAYER_TEAMS_COUNT',
-             ADD_REQUIRED_TEAM_CONTROL = 'ADD_REQUIRED_TEAM_CONTROL';
+             ADD_REQUIRED_TEAM_CONTROL = 'ADD_REQUIRED_TEAM_CONTROL',
+             ADD_REQUIRED_TEAM_TO_PLAYER = 'ADD_REQUIRED_TEAM_TO_PLAYER';
 
 export function changeTourneyTeamsCountAction(count) {
     return {
@@ -38,5 +39,13 @@ export function addRequiredTeamControl(playerId) {
     return {
         type: ADD_REQUIRED_TEAM_CONTROL,
         playerId: playerId
+    }
+}
+
+export function addRequiredTeamToPlayer(playerId, teamId) {
+    return {
+        type: ADD_REQUIRED_TEAM_TO_PLAYER,
+        playerId: playerId,
+        teamId: teamId
     }
 }

@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import uniqid from 'uniqid';
 import axios from 'axios';
 import ReactSelectMaterialUi from "react-select-material-ui";
+import {addRequiredTeamToPlayer} from "../../actions";
 
 
 export default class RequiredTeamsListView extends React.Component {
@@ -24,8 +25,8 @@ export default class RequiredTeamsListView extends React.Component {
 
     render() {
 
-        let {player, addRequiredTeamControl} = this.props;
-
+        let {player, addRequiredTeamControl, addRequiredTeamToPlayer} = this.props;
+console.log(player);
         return <div>
             <Button variant="contained" color="primary" onClick={() => addRequiredTeamControl(player.id)} >
                 <AddIcon />
@@ -34,18 +35,18 @@ export default class RequiredTeamsListView extends React.Component {
 
             {(() => {
                 return player.requiredTeams.length > 0
-                    ? player.requiredTeams.map(() => <ListItem key={uniqid()}>
+                    ? player.requiredTeams.map((_, team) => <ListItem key={uniqid()}>
                         {/*todo: style select*/}
                         <ReactSelectMaterialUi
                             style={{ width: 1000 }}
-                            value="Europe"
+                            value={team.teamId}
                             options={this.state.Teams.map(team => {return {
                                 value: team.Id,
                                 label: team.Name
                                     + ' | league: ' + team.League
                                     + ' | rating: ' + team.Rating}
                             })}
-                            //onChange={this.handleChange}
+                            onChange={(teamId) => addRequiredTeamToPlayer(player.id, teamId)}
                         />
                     </ListItem>)
                     : ''
