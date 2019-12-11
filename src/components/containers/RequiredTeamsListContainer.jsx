@@ -2,7 +2,7 @@ import React from 'react';
 import {players} from "../../reducers";
 import {connect} from "react-redux";
 import RequiredTeamsListView from "../views/RequiredTeamsListView.jsx";
-import {addRequiredTeam} from "../../actions";
+import {addRequiredTeamControl} from "../../actions";
 
 const mapStateToProps = (state) => {
     return {
@@ -12,8 +12,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addRequiredTeam: (playerId) => {
-            dispatch(addRequiredTeam(playerId))
+        addRequiredTeamControl: (playerId) => {
+            dispatch(addRequiredTeamControl(playerId))
         }
     };
 };

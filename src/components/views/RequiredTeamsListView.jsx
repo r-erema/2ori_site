@@ -24,10 +24,10 @@ export default class RequiredTeamsListView extends React.Component {
 
     render() {
 
-        let {player, addRequiredTeam} = this.props;
+        let {player, addRequiredTeamControl} = this.props;
 
         return <div>
-            <Button variant="contained" color="primary" onClick={() => addRequiredTeam(player.id)} >
+            <Button variant="contained" color="primary" onClick={() => addRequiredTeamControl(player.id)} >
                 <AddIcon />
                 Add required team
             </Button>
