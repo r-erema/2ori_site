@@ -5,7 +5,8 @@ export const generateInitialState = function () {
 
     return {
         tourneyTeamsCount: tourneyTeamsCount,
-        players: initialPlayersState(tourneyTeamsCount)
+        players: initialPlayersState(tourneyTeamsCount),
+        tourney: null
     }
 };
 
@@ -15,14 +16,14 @@ export const initialPlayersState = tourneyTeamsCount =>{
             id: uniqid(),
             name: '',
             teamsCount: 0,
-            requiredTeams: [],
+            requiredTeamIds: [],
             editNameMode: false
         },
         {
             id: uniqid(),
             name: '',
             teamsCount: 0,
-            requiredTeams: [],
+            requiredTeamIds: [],
             editNameMode: false
         },
     ];

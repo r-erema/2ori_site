@@ -4,7 +4,8 @@ import {
     UPDATE_PLAYER_NAME,
     UPDATE_PLAYER_TEAMS_COUNT,
     ADD_REQUIRED_TEAM_CONTROL,
-    ADD_REQUIRED_TEAM_TO_PLAYER
+    CHANGE_REQUIRED_TEAM,
+    SHOW_TOURNEY
 } from "./actions";
 import uniqid from "uniqid";
 import { initialPlayersState, distributeTeamsCountEvenly } from "./utils.js";
@@ -28,13 +29,13 @@ export const players = (players = [], action = {}) => {
                 id: uniqid(),
                 name: 'Player ' + (players.length + 1),
                 teamsCount: 0,
-                requiredTeams: []
+                requiredTeamIds: []
             }], action.tourneyTeamsCount);
         }
 
         case UPDATE_PLAYER_NAME: {
             players = [...players];
-            const i = players.findIndex((player) => {return player.id === action.playerId});
+            const i = players.findIndex(player => player.id === action.playerId);
             players[i].name = action.name;
             return players;
         }
@@ -46,7 +47,7 @@ export const players = (players = [], action = {}) => {
             }
 
             const clonedPlayers = [...players];
-            const i = clonedPlayers.findIndex((player) => {return player.id === action.playerId});
+            const i = clonedPlayers.findIndex(player => player.id === action.playerId);
             clonedPlayers[i].teamsCount = parseInt(action.teamsCount);
 
             return validatePlayers(clonedPlayers, action.tourneyTeamsCount) ? clonedPlayers : players;
@@ -58,28 +59,37 @@ export const players = (players = [], action = {}) => {
 
         case ADD_REQUIRED_TEAM_CONTROL: {
             const clonedPlayers = [...players];
-            const i = clonedPlayers.findIndex((player) => {return player.id === action.playerId});
-            clonedPlayers[i].requiredTeams.push({
+            const i = clonedPlayers.findIndex(player => player.id === action.playerId);
+            clonedPlayers[i].requiredTeamIds.push({
                 teamId: ''
             });
+            return clonedPlayers;
+        }
+
+        case CHANGE_REQUIRED_TEAM: {
+            const clonedPlayers = [...players];
+            const i = clonedPlayers.findIndex(player=> player.id === action.playerId);
+            const teamIndexToChange = clonedPlayers[i].requiredTeamIds.findIndex(team => team.teamId === action.teamIdToChange);
+            clonedPlayers[i].requiredTeamIds[teamIndexToChange]['teamId'] = action.newTeamId;
             return clonedPlayers;
         }
 
         default: {
             return players;
         }
-
-        case ADD_REQUIRED_TEAM_TO_PLAYER: {
-            const clonedPlayers = [...players];
-            const i = clonedPlayers.findIndex((player) => {return player.id === action.playerId});
-            clonedPlayers[i].requiredTeams.push({
-                teamId: action.teamId
-            });
-            return clonedPlayers;
-        }
-
     }
 
+};
+
+export const tourney = (tourney = null, action) => {
+    switch (action.hasOwnProperty('type') && action.type) {
+        case SHOW_TOURNEY: {
+            return action.tourney;
+        }
+        default: {
+            return tourney;
+        }
+    }
 };
 
 const validatePlayers = (players, tourneyTeamsCount) => {
