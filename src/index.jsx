@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import TourneyTeamsNumberContainer from './components/containers/TourneyTeamsNumberContainer.jsx';
 import PlayersListContainer from './components/containers/PlayersListContainer.jsx';
 import GenerateTourneyButtonContainer from './components/containers/GenerateTourneyButtonContainer.jsx';
+import TourneyModalContainer from './components/containers/TourneyModalContainer.jsx';
 import { withStyles } from '@material-ui/core/styles';
 import { generateInitialState } from './utils.js';
 import axios from 'axios';
@@ -25,15 +26,20 @@ class App extends React.Component {
         const { classes } = this.props;
 
         return (
-            <Grid container spacing={16} justify="center" >
-                <Grid item xs={8} sm={8}  >
-                    <Paper className={classes.root} >
-                        <TourneyTeamsNumberContainer />
-                        <PlayersListContainer />
-                        <GenerateTourneyButtonContainer />
-                    </Paper>
+            <div>
+                <Grid container spacing={16} justify="center" >
+                    <Grid item xs={8} sm={8}  >
+                        <Paper className={classes.root} >
+                            <TourneyTeamsNumberContainer />
+                            <PlayersListContainer />
+                            <GenerateTourneyButtonContainer />
+                        </Paper>
+                    </Grid>
                 </Grid>
-            </Grid>
+
+                <TourneyModalContainer />
+            </div>
+
         );
     };
 }

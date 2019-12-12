@@ -5,7 +5,7 @@ import {
     UPDATE_PLAYER_TEAMS_COUNT,
     ADD_REQUIRED_TEAM_CONTROL,
     CHANGE_REQUIRED_TEAM,
-    GENERATE_TOURNEY
+    GENERATE_TOURNEY, SHOW_TOURNEY_MODAL
 } from "./actions";
 import uniqid from "uniqid";
 import { initialPlayersState, distributeTeamsCountEvenly } from "./utils.js";
@@ -84,7 +84,10 @@ export const players = (players = [], action = {}) => {
 export const tourney = (tourney = null, action) => {
     switch (action.hasOwnProperty('type') && action.type) {
         case GENERATE_TOURNEY: {
-            return action.tourney;
+            return Object.assign({}, action.tourney);
+        }
+        case SHOW_TOURNEY_MODAL: {
+            return Object.assign({}, action.tourney);
         }
         default: {
             return tourney;

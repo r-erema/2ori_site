@@ -4,7 +4,8 @@ export const CHANGE_TOURNEY_TEAMS_COUNT_ACTION = 'CHANGE_TEAMS_COUNT_ACTION',
              UPDATE_PLAYER_TEAMS_COUNT = 'UPDATE_PLAYER_TEAMS_COUNT',
              ADD_REQUIRED_TEAM_CONTROL = 'ADD_REQUIRED_TEAM_CONTROL',
              CHANGE_REQUIRED_TEAM = 'CHANGE_REQUIRED_TEAM',
-             GENERATE_TOURNEY = 'GENERATE_TOURNEY';
+             GENERATE_TOURNEY = 'GENERATE_TOURNEY',
+             SHOW_TOURNEY_MODAL = 'SHOW_TOURNEY_MODAL';
 
 export function changeTourneyTeamsCountAction(count) {
     return {
@@ -53,6 +54,13 @@ export function changeRequiredTeam(playerId, newTeamId, teamIdToChange) {
 }
 
 export function generateTourneyAction(tourney) {
+    return {
+        type: GENERATE_TOURNEY,
+        tourney: tourney
+    }
+}
+
+export function showTourneyModalAction(tourney) {
     return {
         type: GENERATE_TOURNEY,
         tourney: tourney
