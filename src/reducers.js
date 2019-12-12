@@ -69,8 +69,8 @@ export const players = (players = [], action = {}) => {
         case CHANGE_REQUIRED_TEAM: {
             const clonedPlayers = [...players];
             const i = clonedPlayers.findIndex(player=> player.id === action.playerId);
-            const teamIndexToChange = clonedPlayers[i].requiredTeamIds.findIndex(team => team.teamId === action.teamIdToChange);
-            clonedPlayers[i].requiredTeamIds[teamIndexToChange]['teamId'] = action.newTeamId;
+            const teamIndexToChange = clonedPlayers[i].requiredTeamIds.findIndex(teamId => teamId === action.teamIdToChange);
+            clonedPlayers[i].requiredTeamIds[teamIndexToChange] = action.newTeamId;
             return clonedPlayers;
         }
 

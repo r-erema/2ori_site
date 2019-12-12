@@ -34,18 +34,18 @@ export default class RequiredTeamsListView extends React.Component {
 
             {(() => {
                 return player.requiredTeamIds.length > 0
-                    ? player.requiredTeamIds.map(team => <ListItem key={uniqid()}>
+                    ? player.requiredTeamIds.map(selectedTeamId => <ListItem key={uniqid()}>
                         {/*todo: style select*/}
                         <ReactSelectMaterialUi
                             style={{ width: 1000 }}
-                            value={team.teamId}
+                            value={selectedTeamId}
                             options={this.state.Teams.map(team => {return {
                                 value: team.Id,
                                 label: team.Name
                                     + ' | ' + team.League
                                     + ' | rating: ' + team.Rating}
                             })}
-                            onChange={(teamId) => changeRequiredTeamToPlayer(player.id, teamId, team.teamId)}
+                            onChange={(teamId) => changeRequiredTeamToPlayer(player.id, teamId, selectedTeamId)}
                         />
                     </ListItem>)
                     : ''

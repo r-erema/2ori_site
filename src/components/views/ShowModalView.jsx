@@ -23,7 +23,7 @@ export default class TourneyModalContainer extends React.Component {
                         <TableBody>
                             {group.Teams.map((row, key) =>
                                 <TableRow key={key}>
-                                    <TableCell>{row.Team.Name} {row.Player.name}</TableCell>
+                                    <TableCell>{row.Team.Name} | {row.Player.name}</TableCell>
                                 </TableRow>
                             )}
                         </TableBody>
