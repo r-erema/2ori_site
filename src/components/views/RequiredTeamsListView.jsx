@@ -34,9 +34,10 @@ export default class RequiredTeamsListView extends React.Component {
 
             {(() => {
                 return player.requiredTeamIds.length > 0
-                    ? player.requiredTeamIds.map(selectedTeamId => <ListItem key={uniqid()}>
+                    ? player.requiredTeamIds.map((selectedTeamId, i) => <ListItem key={uniqid()}>
                         {/*todo: style select*/}
                         <ReactSelectMaterialUi
+                            style={{zIndex: 2000 - i}}
                             fullWidth={true}
                             value={selectedTeamId}
                             options={this.state.Teams.map(team => {return {
