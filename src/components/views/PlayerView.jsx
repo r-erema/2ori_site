@@ -1,32 +1,20 @@
 import React from 'react';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 import RequiredTeamsListContainer from "../containers/RequiredTeamsListContainer.jsx";
 import TextField from '@material-ui/core/TextField';
-import {withStyles} from "@material-ui/styles";
 import Divider from '@material-ui/core/Divider';
 
-const styles = theme => ({
-    root: {
-        '& > *': {
-            "margin-bottom": "5%",
-        },
-    },
-});
-
-class PlayerView extends React.Component {
+export default class PlayerView extends React.Component {
 
     render() {
         const {
             player,
             updatePlayerName,
             updatePlayerTeamsCount,
-            tourneyTeamsCount,
-            classes
+            tourneyTeamsCount
         } = this.props;
         return (
             <div>
-                <div className={classes.root} >
+                <div style={{marginBottom: 20}} >
                     <TextField
                         id="outlined-name"
                         label="Player name"
@@ -38,7 +26,7 @@ class PlayerView extends React.Component {
                 </div>
 
 
-                <div className={classes.root}>
+                <div style={{marginBottom: 20}} >
                     <TextField
                         label="Teams count"
                         type="number"
@@ -49,7 +37,7 @@ class PlayerView extends React.Component {
                     />
                     </div>
 
-                <div className={classes.root} >
+                <div style={{marginBottom: 20}} >
                     <RequiredTeamsListContainer  player={player} />
                 </div>
 
@@ -60,5 +48,3 @@ class PlayerView extends React.Component {
     }
 
 }
-
-export default withStyles(styles)(PlayerView);

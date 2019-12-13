@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import uniqid from 'uniqid';
 import axios from 'axios';
 import ReactSelectMaterialUi from "react-select-material-ui";
-
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 export default class RequiredTeamsListView extends React.Component {
 

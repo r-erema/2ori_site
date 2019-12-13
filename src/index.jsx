@@ -27,7 +27,7 @@ class App extends React.Component {
 
         return (
             <div>
-                <Grid container spacing={16} justify="center" >
+                <Grid container spacing={10} justify="center" >
                     <Grid item xs={8} sm={8}  >
                         <Paper className={classes.root} >
                             <TourneyTeamsNumberContainer />
@@ -46,7 +46,7 @@ class App extends React.Component {
 
 const styles = theme => ({
     root: {
-        padding: theme.spacing.unit * 2,
+        padding: 10,
     }
 });
 App = withStyles(styles)(App);
