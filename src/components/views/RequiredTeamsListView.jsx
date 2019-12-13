@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button';
 import uniqid from 'uniqid';
 import axios from 'axios';
 import ReactSelectMaterialUi from "react-select-material-ui";
-import Autocomplete from '@material-ui/lab/Autocomplete';
 
 export default class RequiredTeamsListView extends React.Component {
 
@@ -37,7 +36,7 @@ export default class RequiredTeamsListView extends React.Component {
                     ? player.requiredTeamIds.map((selectedTeamId, i) => <ListItem key={uniqid()}>
                         {/*todo: style select*/}
                         <ReactSelectMaterialUi
-                            style={{zIndex: 500 - i}}
+                            style={{zIndex: 500 - i, fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif", marginTop: 20}}
                             fullWidth={true}
                             value={selectedTeamId}
                             options={this.state.Teams.map(team => {return {
