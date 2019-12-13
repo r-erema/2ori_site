@@ -40,7 +40,7 @@ class PlayerView extends React.Component {
 
                     <div className={classes.root}>
                         <TextField
-                            label="Teams count:"
+                            label="Teams count"
                             type="number"
                             inputProps={{ min: 1 }}
                             value={player.teamsCount}
