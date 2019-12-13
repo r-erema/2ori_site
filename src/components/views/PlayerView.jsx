@@ -22,7 +22,7 @@ export default class PlayerView extends React.Component {
                     <div>
                         <TextField
                             id="outlined-name"
-                            label="Name"
+                            label="Player name"
                             value={player.name}
                             onChange={(event) => {updatePlayerName(player.id, event.target.value)}}
                             margin="normal"
