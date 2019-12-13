@@ -6,15 +6,17 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import TableBody from '@material-ui/core/TableBody';
-
+import generate from 'string-to-color';
+import hexToRgba from 'hex-to-rgba';
 
 export default class TourneyModalContainer extends React.Component {
     render() {
+
         let {tourney} = this.props;
         if (tourney !== null) {
             return <Dialog open={true} >
                 <DialogContent>{
-                    tourney.Groups.map((group, key) => <Table key={key}>
+                    tourney.Groups.map((group, key) => <Table key={key} >
                         <TableHead>
                             <TableRow>
                                 <TableCell>{group.Name}</TableCell>
@@ -22,7 +24,7 @@ export default class TourneyModalContainer extends React.Component {
                         </TableHead>
                         <TableBody>
                             {group.Teams.map((row, key) =>
-                                <TableRow key={key}>
+                                <TableRow key={key} style={{backgroundColor: hexToRgba(generate(row.Player.name), 0.2)}}>
                                     <TableCell>{row.Team.Name} | {row.Player.name}</TableCell>
                                 </TableRow>
                             )}
